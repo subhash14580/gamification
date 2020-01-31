@@ -1,0 +1,16 @@
+export const appConf = {
+    "lskey": "rdpokeragent",
+    "wsessionIdKey": "wsession",
+    "siteId": 'ikkaa',
+    "captchaInfoKey": "captchainfokey",
+    "countriesDataKey": "countriesData",
+    "preferredCurrency": "INR",
+    "Userdatakeyforcookie": "USER_DATA",
+    "languageForProfile": "EN",
+    "transactionResultsInfoTextKey": "Transaction Results",
+    "noDataForReferralCodes": "No codes available !!!",
+    "noDataForRefTree": "No referrings",
+    "playersRevenueDataTableResultsText": "Results",
+    "nothingToDisplayMsg":"No data to display",
+    "campaignListDataKey": "campaignListsForAff",
+}

@@ -1,0 +1,101 @@
+<app-header [navbarBrandRouterLink]="['/dashboard']" [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/Back-Office.png', width: 89, height: 25, alt: 'CoreUI Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/Back-Office.png', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
+  <ul class="nav navbar-nav d-md-down-none">
+    <li class="nav-item px-3">
+      <img class="logoutimg" src="assets/Back-Office.jpg" />
+    </li>
+    <!-- on login add create agent or player -->
+  </ul>
+  <ul class="nav navbar-nav ml-auto" *ngIf="!isUserLoggedIn"></ul>
+  <ul class="nav navbar-nav ml-auto" *ngIf="isUserLoggedIn">
+    <li class="nav-item dropdown username" dropdown placement="bottom right">
+      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+        dropdownToggle (click)="false">
+        <!-- <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" /> -->
+        Hi {{userdata.login}}
+      </a>
+    </li>
+    <!-- <li class="nav-item dropdown" dropdown placement="bottom right">
+      <div class="badge badge-info usercashbalance" data-toggle="dropdown" role="button" aria-haspopup="true"
+        aria-expanded="false">
+       Balance : {{userCashbalance}}
+      </div>
+    </li> -->
+    <li class="nav-item d-md-down-none logoutdiv">
+      <div class="">
+        <button class="btn ">
+          <img class="logoutimg" (click)="logout()" src="assets/logout.png" />
+        </button>
+      </div>
+    </li>
+
+    <!-- <li class="nav-item d-md-down-none">
+      <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
+    </li> -->
+    <!-- <li class="nav-item d-md-down-none">
+      <a class="nav-link" href="#"><i class="icon-list"></i></a>
+    </li> -->
+    <!-- <li class="nav-item d-md-down-none">
+      <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
+    </li> -->
+    <!--
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <div class="dropdown-header text-center"><strong>Account</strong></div>
+        <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span
+            class="badge badge-info">42</span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span
+            class="badge badge-success">42</span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span
+            class="badge badge-danger">42</span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span
+            class="badge badge-warning">42</span></a>
+        <div class="dropdown-header text-center"><strong>Settings</strong></div>
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-dark">42</span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span
+            class="badge badge-primary">42</span></a>
+        <div class="divider"></div>
+        <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+      </div>
+    </li> -->
+  </ul>
+
+</app-header>
+<div [hidden]="!isInitialResponseRendered" class="app-body">
+  <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized"
+    (minimizedChange)="toggleMinimize($event)">
+    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
+    <app-sidebar-minimizer></app-sidebar-minimizer>
+  </app-sidebar>
+
+  <!-- Main content -->
+  <main class="main">
+    <!-- Breadcrumb -->
+    <!-- breaking change 'cui-breadcrumb' -->
+    <!-- <cui-breadcrumb>
+     
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <a class="btn" href="#"><i class="icon-speech"></i></a>
+          <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+          <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+        </div>
+      </li>
+    </cui-breadcrumb> -->
+    <div class="container-fluid outletdiv">
+      <router-outlet></router-outlet>
+    </div><!-- /.container-fluid -->
+  </main>
+
+</div>
+<app-footer [hidden]="!isInitialResponseRendered">
+  <span class="ml-auto"><a (click)="navigate('/contact')">Contact Us 24/7 </a></span>
+  <span class="ml-auto"><a (click)="navigate('/privacypolicy')">Privacy Policy</a></span>
+  <span class="ml-auto"> <a href="https://ikkaapoker.czargaming.com/legal/terms.html" target="_blank"> Terms of Use</a></span>
+  <span class="ml-auto"> <a (click)="navigate('/sitemap')"> Sitemap</a></span>
+  <span class="ml-auto">Powered by <a href="">Rdpoker</a></span>
+</app-footer>

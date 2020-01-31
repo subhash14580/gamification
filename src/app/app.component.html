@@ -1,0 +1,17 @@
+<app-dashboard></app-dashboard>
+<ngx-spinner size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
+    <p style="color: white;padding-top: 60px;">{{displayMsg}} </p>
+</ngx-spinner>
+<!-- <ngx-spinner>
+    <p style="color: white">{{displayMsg}}  </p>
+</ngx-spinner> -->
+
+<div id="myModal" class="modall" *ngIf="showModal">
+
+    <!-- Modal content -->
+    <div class="modall-content">
+        <span class="closel" (click)="hideModalOverlay()">&times;</span>
+        <p class="modaltext">{{modalText}}</p>
+    </div>
+
+</div>

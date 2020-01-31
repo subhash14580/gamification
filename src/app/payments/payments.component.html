@@ -1,0 +1,136 @@
+<div class="row">
+    <div class="col-md-8 main">
+        <div class="card">
+            <div class="card-header">
+                <strong>Payments statistics</strong>
+            </div>
+            <div class="card-body">
+                <form action="" (ngSubmit)="getStats()" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="wallet">Period</label>
+                        <div class="col-md-9">
+                            <select id="wallet" name="dates" [(ngModel)]="selectedIndex" class="form-control">
+                                <option *ngFor="let d of dateData;let i=index" value="{{i}}">
+                                    {{d.text}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 btnholder">
+                            <button type="submit" class="btn btn-lg btn-danger"><i class="fa fa-success"></i>
+                                Get results</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+</div>
+<!-- <div class="row" *ngIf="isTableDataRendered">
+
+    <div class="animated main">
+        <div class="row">
+            <div class="centerdiv">
+                <div class="card">
+                    <div class="card-header resultTextDiv">
+                        <i class="fa fa-align-justify"></i> Results
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-responsive table-bordered table-striped table-sm" *ngIf="rowData.length>0">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">Date</th>
+                                    <th rowspan="2">Unique hits</th>
+                                    <th colspan="2" rowspan="1">Referred</th>
+
+                                    <th rowspan="2">Total</th>
+
+                                    <th rowspan="2">Paid Amount</th>
+                                    <th rowspan="2">Reversed Amount</th>
+                                    <th rowspan="2">Status</th>
+                                </tr>
+                                <tr>
+                                    <th rowspan="1" colspan="1">Referred Players</th>
+                                    <th rowspan="1" colspan="1">Affiliates</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let record of rowData;let i=index">
+                                    <td *ngFor="let val of record">{{val}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered table-striped table-sm" *ngIf="rowData.length==0">
+                            <thead>
+                                <tr>
+                                    <th>No data to display !!!</th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div> -->
+<div class="datatable">
+    <div class="animated main" *ngIf="isTableDataRendered">
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <div>
+                        <i class="fa fa-align-justify"></i> Results
+                    </div>
+                    <div>
+                        <div>
+                            <table *ngIf="rowData.length>0" class="table table-bordered table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Date</th>
+                                        <th rowspan="2">Unique hits</th>
+                                        <th colspan="2" rowspan="1">Referred</th>
+    
+                                        <th rowspan="2">Total</th>
+    
+                                        <th rowspan="2">Paid Amount</th>
+                                        <th rowspan="2">Reversed Amount</th>
+                                        <th rowspan="2">Status</th>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="1" colspan="1">Referred Players</th>
+                                        <th rowspan="1" colspan="1">Affiliates</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let record of rowData;let i=index">
+                                        <td *ngFor="let val of record">{{val}}</td>
+    
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered table-striped table-sm" *ngIf="rowData.length==0">
+                                <thead>
+                                    <tr>
+                                        <th>No results !!!</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="app-body">
+    <main class="main d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card-group">
+                        <div class="card p-4">
+                            <div class="card-body">
+                                <form [formGroup]="basicForm" (ngSubmit)="resetPassword()">
+                                    <p class="text-muted heading">Enter your username and email to get the link!!!</p>
+
+                                    <div class="input-group mb-3">
+                                        <!-- <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="icon-user"></i></span>
+                                        </div> -->
+                                        <input type="text" class="form-control" placeholder="Enter your username"
+                                            formControlName="username" required>
+                                    </div>
+                                    <div class="input-group mb-4">
+                                        <!-- <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="email"></i></span>
+                                        </div> -->
+                                        <input type="text" class="form-control" placeholder="Enter your email"
+                                            formControlName="email" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 retrievebtn">
+                                            <button type="submit" class="btn btn-primary px-4 "
+                                                >Retrieve</button>
+                                            
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

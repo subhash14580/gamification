@@ -1,0 +1,14 @@
+.heading
+{
+    color: black !important;
+    font-weight: bold;
+    text-align: center;
+}
+.retrievebtn
+{
+    text-align: center;
+}
+.main
+{
+    margin: 0 auto !important;
+}

@@ -1,0 +1,50 @@
+<div class="row" *ngIf="iSDatarendered">
+    <div class="col-lg-8 balancetable">
+        <div class="card" *ngIf="codesData!=null">
+            <div class="card-header">
+                <div style="display:inline-block">Account</div>
+                <div style="float: right;">
+                    <button type="submit" class="btn btn-md btn-primary btn-pill" aria-pressed="true"
+                        (click)="navigate('/user/addcamp')"><i class="fa fa-success"></i>
+                        Add campaigns</button></div>
+            </div>
+            <div class="card-body campdata">
+                <table class="table">
+                    <thead>
+                        <tr rowspan="3">
+                            <td>Campaign Type</td>
+                            <td>Campaign Name</td>
+                            <td>Website URL</td>
+                            <td>Edit Campaign</td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of codesData;let i=index">
+                            <td><b>{{c.type}}</b></td>
+                            <td>{{c.name}}</td>
+                            <td>{{c.url}}</td>
+                            <td>
+                                <div class="editbtn"><button type="button" class="btn btn-success btn-md "
+                                        (click)="navigate('/user/addcamp',{mode:'edit',name:c.name,url:c.url,campId:c.id,campIdText:c.type})">
+                                        Edit</button></div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="card" *ngIf="codesData==null">
+
+            <div class="card-header">
+                {{noDataAvailableMsg}}
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+
+    <!--/.col-->
+</div>
+<app-oops *ngIf="isApiFailed"></app-oops>

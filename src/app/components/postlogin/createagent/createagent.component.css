@@ -1,0 +1,20 @@
+.mainform
+{
+    margin-left: 0px !important;
+}
+.main
+{
+    margin: 0 auto !important;
+    padding-top: 10px;
+}
+.matched {
+    border: 1.5px solid green ;
+  } 
+  .ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  input.ng-invalid.ng-touched ,input.notmatched {
+    border-left: 5px solid #a94442; /* red */
+  }
+  

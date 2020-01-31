@@ -1,0 +1,137 @@
+<div class="animated fadeIn">
+    <div class="col-sm-9 register">
+        <div class="card">
+            <div class="card-header">
+                <strong>Registration</strong>
+                <small>Form</small>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="registrationForm" (ngSubmit)="register()">
+                    <div class="form-group">
+                        <label for="textarea-input"><b>Login info</b> </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" formControlName="login"
+                            placeholder="Enter your username name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Enter email">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="Password">Password</label>
+                            <input type="password" class="form-control" formControlName="password"
+                                placeholder="Enter your password" (keyup)="handleConfirmPaswrd($event)">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="Password">Confirm Password</label>
+                            <input type="password" class="form-control" (keyup)="verifyConfirmPaswrd($event)"
+                                placeholder="Confirm your password"
+                                [ngClass]="{matched:isCnfrmPswdMatched=='true',notmatched:isCnfrmPswdMatched=='false'}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea-input"><b>Personal info</b> </label>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="firstname">Firstname</label>
+                            <input type="text" class="form-control" formControlName="firstName"
+                                placeholder="Enter your firstname ">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="lastname">lastname</label>
+                            <input type="text" class="form-control" formControlName="lastName"
+                                placeholder="Enter your lastname ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea-input">Address</label>
+
+                        <textarea id="textarea-input" name="textarea-input" rows="4" class="form-control"
+                            placeholder="Enter Address" formControlName="address"></textarea>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="Mobile">Mobile number </label>
+                        <input type="number" class="form-control" formControlName="phone"
+                            placeholder="Enter your Mobile number">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State/province </label>
+                        <input type="text" class="form-control" formControlName="state" id="state"
+                            placeholder="Enter your state/province">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">city </label>
+                        <input type="text" class="form-control" formControlName="city" placeholder="Enter your city">
+                    </div>
+                    <div class="form-group">
+                        <label for="currency">Preffered currency : </label>
+                        <label><b>({{preferredCurrency}})</b></label>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="postal">Zip/Postal</label>
+                            <input type="text" class="form-control" formControlName="zipCode"
+                                placeholder="Enter your postal code ">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="country">Country</label>
+                            <select class="form-control" name="country" (change)="changeCountry($event.target.value)">
+                                <option *ngFor="let c of countriesList" value="{{c.id}}">
+                                    {{c.name}}
+                                </option>
+
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Campaign Name</label>
+                        <input type="text" class="form-control" formControlName="campaignName"
+                            placeholder="Enter your Campaign name">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Website url</label>
+                        <input type="text" class="form-control" formControlName="websiteurl"
+                            placeholder="Enter your Website url">
+                    </div>
+                    
+                    <div class="form-group ">
+                        <label for="Campaign type">Campaign type</label>
+                        <select class="form-control" name="Campaign type" (change)="changeCampaignType($event.target.value)">
+                            <option *ngFor="let c of campaignsList" value="{{c.id}}">
+                                {{c.type}}
+                            </option>
+
+                        </select>
+
+                    </div>
+                    <div class="form-group termsdiv">
+                        <input class="form-check-input" type="checkbox" formControlName="isTermsAndConditionsAccepted"
+                            name="checkbox1">
+                        <label class="form-check-label" for="checkbox1">
+                            I accept terms and conditions
+                        </label>
+                    </div>
+                    <div class="form-group btn-sml submitbtn">
+                        <button type="submit" class="btn btn-lg btn-success active" aria-pressed="true"
+                            [disabled]="!rgstrBtnEnabled || !registrationForm.controls.isTermsAndConditionsAccepted.value">Submit</button>
+
+
+                        <!-- <button class="btn btn-lg btn-success px-4" type="submit" *ngIf="rgstrBtnClicked">
+                            <span class="spinner-border spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        </button> -->
+
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

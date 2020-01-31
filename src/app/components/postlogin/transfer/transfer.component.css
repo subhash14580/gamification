@@ -1,0 +1,22 @@
+.ptype
+{
+    display: inline-block;
+}
+.radioholder
+{
+    padding-bottom: 10px;
+}
+.tofroholder
+{
+    display: inline-flex;
+
+}
+.btnholder
+{
+    text-align: right;
+}
+.main
+{
+    margin: 0 auto !important;
+    padding-top: 10px;  
+}

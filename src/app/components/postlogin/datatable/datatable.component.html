@@ -1,0 +1,47 @@
+<div class="animated">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> {{tableInfoText}}
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-sm table-responsive"
+                        *ngIf="headers.length>0">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let title of headers">{{title}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of rowData">
+                                <td *ngFor="let val of record" class="datatabletd">{{val}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered table-striped table-sm table-responsive"
+                        *ngIf="headers.length==0">
+                        <thead>
+                            <tr>
+                                <th>No results !!!</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <nav>
+                        <ul class="pagination" *ngIf="headers.length> 0">
+                            <li class="page-item"><a class="page-link" (click)="prevPage()"
+                                    *ngIf="selectedPageNumber> 1">Prev</a></li>
+                            <li class="page-item" *ngFor="let page of getListOfValues(numberOfPages)"
+                                [ngClass]="{'active':page==selectedPageNumber}"><a class="page-link"
+                                    (click)="getPaginationData(page)">{{page}}</a></li>
+                            <li class="page-item" (click)="nextPage()"><a class="page-link"
+                                    *ngIf="numberOfPages>selectedPageNumber">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

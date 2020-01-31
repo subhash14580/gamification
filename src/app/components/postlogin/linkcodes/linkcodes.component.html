@@ -1,0 +1,73 @@
+<div class="row" *ngIf="isCallComplete">
+    <div class="col-md-8 main">
+        <div class="card">
+            <div class="card-header">
+                <strong>Link codes </strong>
+            </div>
+            <div class="card-body">
+                <form enctype="multipart/form-data" class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="wallet">Language</label>
+                        <div class="col-md-9">
+                            <select id="lang" name="lang" class="form-control">
+                                <option value="Eng">English</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="campaignsList.length>0">
+                        <label class="col-md-3 col-form-label" for="Referrer">Campaign name</label>
+                        <div class="col-md-9">
+                            <select id="referrer" name="affcode" class="form-control" (change)="affCodeChange($event.target.value)">
+                                <option *ngFor="let obj of campaignsList" value="{{obj.code}}">{{obj.text}} </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="mainItems.length>0">
+                        <label class="col-md-3 col-form-label" for="Referrer">Select site to promote </label>
+                        <div class="col-md-9">
+                            <select (change)="changeMain($event)" class="form-control" name="mainItems">
+                                <option *ngFor="let m of mainItems" value="{{m}}">{{m}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="mainItems.length>0">
+                        <label class="col-md-3 col-form-label" for="Referrer">Select Banner </label>
+                        <div class="col-md-9">
+                            <select (change)="changeSub($event)" class="form-control" name="submaps">
+                                <option *ngFor="let obj of data.bannersMap[firstMainType];let i =index;" value="{{i}}">
+                                    {{obj.bannerObjects[0].name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row imgbannerdiv">
+                        <label class="col-md-3 col-form-label" for="Referrer">Banner preview </label>
+                        <div class="col-md-9">
+                            <img class="imgbanner" src="{{imgObj.src}}" width="{{imgObj.width}}" height="{{imgObj.height}}" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textarea-input">Link code</label>
+                        <div class="col-md-9">
+                            <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"
+                                placeholder="">{{linkCodeHtmlText}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textarea-input">
+                            Text link
+                        </label>
+                        <div class="col-md-9">
+                            <a>{{textLink}}</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--/.col-->
+</div>
+<app-oops *ngIf="isApiFailed"></app-oops>

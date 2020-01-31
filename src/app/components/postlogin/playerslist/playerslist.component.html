@@ -1,0 +1,176 @@
+<div class="row">
+    <div class="col-md-8 main">
+        <div class="card">
+            <div class="card-header">
+                <strong>Players list </strong>
+            </div>
+            <div class="card-body">
+                <form action="" enctype="multipart/form-data" (ngSubmit)="getPlayersList(1,true)"
+                    class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="wallet">Wallet</label>
+                        <div class="col-md-9">
+                            <select class="form-control" (change)="changeCurrency($event.target.value)">
+                                <option value="INR">INR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="Referrer">Referrer</label>
+                        <div class="col-md-9">
+                            <select class="form-control" (change)="changeReferrer($event.target.value)">
+                                <option value="myself">MySelf</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Login</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="login" [(ngModel)]="inputs.login"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="Referrer">Nickname</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="nickname" [(ngModel)]="inputs.nickName"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="Referrer">Player First Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="firstname" [(ngModel)]="inputs.firstName"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="Referrer">Player Last Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="lastname" [(ngModel)]="inputs.lastName"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="Referrer">Email</label>
+                        <div class="col-md-9">
+                            <input type="email" class="form-control" name="email" [(ngModel)]="inputs.email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="wallet">Players status</label>
+                        <div class="col-md-9">
+                            <select id="wallet" (change)="changePlayerstatus($event.target.value)" class="form-control">
+                                <option value="-1">All</option>
+                                <option value="1">Active</option>
+                                <option value="2">Locked</option>
+                                <option value="0">Pending</option>
+                                <option value="4">Restricted</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 row">
+                            <label class="col-md-8 col-form-label">Rows per page</label>
+                            <div class="col-md-4">
+                                <input type="number" name="rowsperpage" [(ngModel)]="inputs.rowsPerPage"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6 row">
+                            <label class="col-md-10 col-form-label" for="Referrer">Include subagents player</label>
+                            <div class="col-md-2 switchbtn">
+                                <label class="switch switch-outline-success-alt">
+                                    <input type="checkbox" class="switch-input" name="showTree"
+                                        (change)="changeshowTreestatus()">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 btnholder">
+                            <button type="Transfer" type="submit" class="btn btn-lg btn-success"><i
+                                    class="fa fa-success"></i>
+                                Show</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+</div>
+<div class="row datatable" *ngIf="isTableDataRendered">
+
+    <div class="animated">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> {{tableInfoText}}
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped table-sm" *ngIf="headers.length>0">
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let title of headers">{{title}}</th>
+                                    <th>Operations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let record of rowData;let i=index">
+                                    <td *ngFor="let val of record" class="datatabletd" [innerHTML]="val"></td>
+                                    <td>
+                                        <!-- add reset/lock/transfer-->
+                                        <ul>
+                                            <li class="opsli" (click)="transfer('/user/transfer')">Transfer</li>
+                                            <li class="opsli" *ngIf="opsCol[i].status=='Active' || opsCol[i].status=='active'"
+                                                (click)="lockUnlock(opsCol[i].loginName,opsCol[i].referrerLogin,i)">
+                                                Lock
+                                            </li>
+                                            <li class="opsli" *ngIf="opsCol[i].status!='Active' && opsCol[i].status!='active'"
+                                                (click)="lockUnlock(opsCol[i].loginName,opsCol[i].referrerLogin,i)">
+                                                Unlock
+                                            </li>
+                                            <li *ngIf="opsCol[i].status=='Active' || opsCol[i].status=='active'" class="opsli"
+                                                (click)="resetPswd(opsCol[i].loginName)">Reset password
+
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered table-striped table-sm"
+                            *ngIf="headers.length==0">
+                            <thead>
+                                <tr>
+                                    <th>No results !!!</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <nav>
+                            <ul class="pagination" *ngIf="headers.length> 0">
+                                <li class="page-item"><a class="page-link" (click)="prevPage()"
+                                        *ngIf="selectedPageNumber> 1">Prev</a></li>
+                                <li class="page-item" *ngFor="let page of getListOfValues(numberOfPages)"
+                                    [ngClass]="{'active':page==selectedPageNumber}"><a class="page-link"
+                                        (click)="getPlayersList(page)">{{page}}</a></li>
+                                <li class="page-item" (click)="nextPage()"><a class="page-link"
+                                        *ngIf="numberOfPages>selectedPageNumber">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

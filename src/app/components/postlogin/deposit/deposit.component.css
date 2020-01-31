@@ -1,0 +1,13 @@
+div label
+{
+    font-weight: bold !important;
+}
+.main
+{
+    margin: 0 auto !important;
+    padding-top: 20px;
+}
+.btnholder
+{
+    text-align: center;
+}

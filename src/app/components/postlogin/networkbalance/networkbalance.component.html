@@ -1,0 +1,47 @@
+<div class="row" *ngIf="isBalanceCallCompleted">
+    <div class="col-lg-8 balancetable">
+        <div class="card" *ngIf="(subLevelData | json) != '{}'">
+            <div class="card-header">
+                Account
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Currency</td>
+                            <td>{{subLevelData["code"]}}</td>
+                        </tr>
+                        <tr>
+                            <td>Agents Balance</td>
+                            <td>{{subLevelData["AGENTS_BALANCE"]}}</td>
+                        </tr>
+                        <tr>
+                            <td>Players' Balance</td>
+                            <td>{{subLevelData["PLAYERS_BALANCE"]}}</td>
+
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>{{subLevelData["TOTAL"]}}</td>
+                        </tr>
+                        
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card" *ngIf="(subLevelData | json) == '{}'">
+                <div class="card-header">
+                    No data to display !!!
+                </div>
+                
+            </div>
+    </div>
+    <!--/.col-->
+
+    <!--/.col-->
+</div>
+<app-oops *ngIf="isApiFailed"></app-oops>

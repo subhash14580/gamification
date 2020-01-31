@@ -1,0 +1,164 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-8 mb-4 main">
+            <!-- Nav tabs -->
+            <tabset>
+                <tab heading="Login information">
+
+                    <div class="mainform">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <form action="" [formGroup]="agentInformation" (ngSubmit)="createagent()" method="post"
+                                    enctype="multipart/form-data" class="form-horizontal">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="Username">Username</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control" type="text" name="username" placeholder=""
+                                                formControlName="username">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="Nickname">Nickname</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control" type="text" name="nickname" placeholder=""
+                                                formControlName="nickname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="Password">Password</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control"  type="password" name="password"
+                                                placeholder="" formControlName="password"
+                                                (keyup)="handleConfirmPaswrd($event)">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="cpassword">Confirm
+                                            Password</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control" type="password" name="cpassword" placeholder=""
+                                                (keyup)="verifyConfirmPaswrd($event)"
+                                                [ngClass]="{matched:isCnfrmPswdMatched==true,notmatched:isCnfrmPswdMatched==false}">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <div class="col-md-12 btnholder">
+                                            <button type="Transfer" type="submit" class="btn btn-lg btn-primary"
+                                                [disabled]="!btnEnabled"><i class="fa fa-success"></i>
+                                                Create agent </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!--/.col-->
+
+                </tab>
+                <tab heading="Personal information">
+                    <div class="mainform">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <form action="" [formGroup]="agentPersonalInfoForm" method="post"
+                                    enctype="multipart/form-data" class="form-horizontal">
+
+
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter email"
+                                            formControlName="email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="textarea-input"><b>Personal info</b> </label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="firstname">Firstname</label>
+                                            <input type="text" class="form-control" id="firstname"
+                                                formControlName="firstname" placeholder="Enter your firstname ">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="lastname">lastname</label>
+                                            <input type="text" class="form-control" id="lastname"
+                                                placeholder="Enter your lastname " formControlName="lastname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="textarea-input">Address</label>
+
+                                        <textarea id="textarea-input" name="textarea-input" rows="4"
+                                            class="form-control" placeholder="Enter Address"
+                                            formControlName="address"></textarea>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Mobile">Mobile number </label>
+                                        <input type="number" class="form-control" placeholder="Enter your Mobile number"
+                                            formControlName="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state">State/province </label>
+                                        <input type="text" class="form-control" id="state"
+                                            placeholder="Enter your state/province" formControlName="state">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">city </label>
+                                        <input type="text" class="form-control" placeholder="Enter your city"
+                                            formControlName="city">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currency">Preffered currency : </label>
+                                        <label><b>{{preferredCurrency}}</b></label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="postal">Zip/Postal</label>
+                                            <input type="text" class="form-control"
+                                                placeholder="Enter your postal code " formControlName="zipCode">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="country">Country</label>
+                                            <select class="form-control" name="country"
+                                                (change)="changeCountry($event.target.value)">
+                                                <option *ngFor="let c of countriesList" value="{{c.id}}">
+                                                    {{c.name}}
+                                                </option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+
+                <tab heading="Revenue settings">
+                    <div class="mainform">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label" for="date-input">Revenue from poker </label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="number" name="payout" placeholder=""
+                                            [(ngModel)]="revenuePayout">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input class="form-control" type="number" name="payoutps" placeholder=""
+                                            [(ngModel)]="revenuePayoutps">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+    </div>

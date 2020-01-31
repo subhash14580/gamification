@@ -1,0 +1,191 @@
+<div class="row">
+    <div class="col-md-8 main">
+        <div class="card">
+            <div class="card-header">
+                <strong>Transactions</strong>
+            </div>
+            <div class="card-body">
+                <form action="" enctype="multipart/form-data" class="form-horizontal"
+                    (ngSubmit)="getTransactionHistory(1,true)">
+
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <div> <label class=" col-form-label" for="date-input"></label></div>
+                            <div class="col-form-label">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="inputs.typedata.Deposit.status" name="checkbox1">
+                                    <label class="form-check-label" for="checkbox1">
+                                        Deposit
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="inputs.typedata.Chargeback.status" name="checkbox2">
+                                    <label class="form-check-label" for="checkbox2">
+                                        Chargeback
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="inputs.typedata.Cashout.status" name="checkbox3">
+                                    <label class="form-check-label" for="checkbox3">
+                                        Cashout
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="inputs.typedata.BonusAdjustment.status" name="checkbox4">
+                                    <label class="form-check-label" for="checkbox3">
+                                        Bonus Adjustment
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="inputs.typedata.TransferCancellation.status" name="checkbox5">
+                                    <label class="form-check-label" for="checkbox3">
+                                        TransferCancellation
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div> <label class=" col-form-label" for="date-input"></label></div>
+                            <div class="col-form-label">
+                                <div class="form-check checkbox">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="inputs.typedata.TransferfromPlayer.status" name="checkbox5">
+                                    <label class="form-check-label" for="checkbox3">
+                                        Transfer from Player
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="inputs.typedata.ReferringRevenue.status" name="checkbox5">
+                                    <label class="form-check-label" for="checkbox3">
+                                        Referring Revenue
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="inputs.typedata.TransfertoPlayer.status" name="checkbox5">
+                                    <label class="form-check-label" for="checkbox3">
+                                        Transfer to Player
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="inputs.typedata.TransferfromAgent.status" name="checkbox5">
+                                    <label class="form-check-label" for="checkbox3">
+                                        Transfer from Agent
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="date-input">Transaction date</label>
+                        <div class="col-md-9">
+
+                            <div class="">
+                                <b>To</b>
+                                <input class="form-control" type="date" name="startDate" [(ngModel)]="inputs.startDate">
+
+                            </div>
+                            <div>
+                                <b>From</b>
+                                <input class="form-control" type="date" name="endDate" [(ngModel)]="inputs.endDate">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="wallet">CHP</label>
+                        <div class="col-md-9">
+                            <select name="wallet" class="form-control" (change)="changeCurrency($event.target.value)">
+                                <option value="CHP">CHP</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="agent">agent</label>
+                        <div class="col-md-9">
+                            <select name="agent" (change)="changeAgentType($event.target.value)" class="form-control">
+                                <option value="myself">MySelf</option>
+                                <option value="myself and subagents">MySelf and subagents</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="rpage">Rows per page</label>
+                        <div class="col-md-9">
+                            <input type="number" name="rp" class="form-control" [(ngModel)]="inputs.limit">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 btnholder">
+                            <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-success"></i>
+                                Show</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--/.col-->
+</div>
+<div class="row datatable" *ngIf="isTableDataRendered">
+    <div class="col-md-10 main">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> {{tableInfoText}}
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-sm table-responsive"
+                        *ngIf="rowData.length>0">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let title of headers">{{title |  titlecase}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of rowData">
+                                <td *ngFor="let val of record" class="datatabletd" [innerHTML]="val"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered table-striped table-sm"
+                        *ngIf="rowData.length==0">
+                        <thead>
+                            <tr>
+                                <th>No results !!!</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <nav>
+                        <ul class="pagination" *ngIf="rowData.length> 0">
+                            <li class="page-item"><a class="page-link" (click)="prevPage()"
+                                    *ngIf="selectedPageNumber> 1">Prev</a></li>
+                            <li class="page-item" *ngFor="let page of getListOfValues(numberOfPages)"
+                                [ngClass]="{'active':page==selectedPageNumber}"><a class="page-link"
+                                    (click)="getAgentsList(page)">{{page}}</a></li>
+                            <li class="page-item" (click)="nextPage()"><a class="page-link"
+                                    *ngIf="numberOfPages>selectedPageNumber">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

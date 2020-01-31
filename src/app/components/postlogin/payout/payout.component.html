@@ -1,0 +1,97 @@
+<!-- <div class="row">
+    <div class="col-md-8 main">
+        <div class="card">
+            <div class="card-header">
+                <strong>Players list </strong>
+            </div>
+            <div class="card-body">
+                <form action="" enctype="multipart/form-data" (ngSubmit)="getbankaccinfo()" class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Available for Payout</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Available for payout"
+                                [(ngModel)]="inputs.availablepayout" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Payout Amount</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" name="payamount" [(ngModel)]="inputs.beforedot"
+                                placeholder="">
+                        </div>
+                        <span style="margin-top: 15px"> . </span>
+                        <div class="col-md-1">
+                            <input type="text" class="form-control" name="payamnt"
+                                [(ngModel)]="inputs.payamountafterdot" placeholder="">
+                        </div>
+                    </div>
+                    <strong style="margin-left: 206px"> Favourite Payment Gateway </strong>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Payment Gateway</label>
+                        <div class="col-md-9">
+                            <select class="form-control" name="country" [(ngModel)]="selectedPayment">
+                                <option *ngFor="let p of paymentgatewayList" value="{{p.id}}">
+                                    {{p.value}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Comments</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" (ngclass)="commentsclass"
+                                name="Available for payout" [(ngModel)]="inputs.comments" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea-input">Address</label>
+
+                        <textarea id="textarea-input" name="textarea-input" rows="4" class="form-control"
+                            placeholder="Enter Address" [(ngModel)]="inputs.comments"></textarea>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 btnholder">
+                            <button type="Transfer" type="submit" class="btn btn-lg btn-success"><i
+                                    class="fa fa-success"></i>
+                                Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    
+</div> -->
+<div class="row">
+    <div class="col-md-8 main">
+      <div class="card">
+        <div class="card-header">
+          <strong>Payout </strong>
+        </div>
+        <div class="card-body">
+          <form  enctype="multipart/form-data" (ngSubmit)="payout()" class="form-horizontal">
+  
+            <div class="form-group">
+              <label for="payout">Payout </label>
+              <input type="number" class="form-control" name="amount"
+               placeholder="Enter payout amount" [(ngModel)]="amount">
+            </div>
+  
+  
+            <div class="form-group row">
+              <div class="col-md-12 btnholder">
+                <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-success"></i>
+                  Payout</button>
+              </div>
+            </div>
+  
+          </form>
+  
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>

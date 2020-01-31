@@ -1,0 +1,66 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                  <p class="text-muted heading">Sign In to your account</p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter username" formControlName="login"
+                      value="latheesh" required>
+
+
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password" value="123456" class="form-control" placeholder="Enter password"
+                      formControlName="password" required>
+
+                  </div>
+                  <!-- <div class="row">
+
+                    <div class="col-4">
+                      <img [src]="imageBlobUrl" class="captcha"></div>
+                  </div>
+
+                  <div class="input-group mb-3 bottomdiv">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-reload" (click)="generateCaptcha()"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter captcha" value=""
+                      formControlName="captcha" required>
+                  </div> -->
+
+              <div class="row bottomdiv">
+                <div class="col-6">
+                  <button type="submit" class="btn btn-primary px-4">{{'login'}}</button>
+                  <!-- <button class="btn btn-primary px-4" type="submit" *ngIf="loginBtnClicked">
+                        <span class="spinner-border spinner-grow-sm" role="status" aria-hidden="true"></span>
+                      </button> -->
+                  <!-- <button type="submit" class="btn btn-primary px-4" *ngIf="loginBtnClicked">{{'Checking...'}}</button> -->
+
+                </div>
+                <div class="col-6 text-right">
+                  <button type="button" class="btn btn-link px-0" (click)="navigate('forgotpswd')">Forgot
+                        password?</button>
+                  
+                </div>
+              </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+</main>
+</div>

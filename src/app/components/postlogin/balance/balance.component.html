@@ -1,0 +1,52 @@
+<div class="row" *ngIf="isBalanceCallCompleted">
+    <div class="col-lg-8 balancetable">
+        <div class="card">
+            <div class="card-header">
+                Account
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr rowspan="3">
+                            <select class="form-control" id="country" (change)="onChange($event)" name="players" [(ngModel)]="selectedPlayerIndex">
+                                <option *ngFor="let obj of groupData;let i=index" value={{i}}>{{obj.loginName}}
+                                </option>
+                            </select>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="(subLevelData | json) != '{}'">
+                        <tr>
+                            <td>Cash balance</td>
+                            <td>{{subLevelData["CASHBALANCE"]}}</td>
+                        </tr>
+                        <tr>
+                            <td>Players' Balance</td>
+                            <td>{{subLevelData["PLAYERS_BALANCE"]}}</td>
+
+                        </tr>
+                        <tr>
+                            <td>TOTAL_REVENUE</td>
+                            <td>{{subLevelData["TOTAL_REVENUE"]}}</td>
+                        </tr>
+                        <tr>
+                            <td>From players</td>
+                            <td>{{subLevelData["REVENUE_FROM_PLAYERS"]}}</td>
+                        </tr>
+                        <tr>
+                            <td>From Agents</td>
+                            <td>{{subLevelData["REVENUE_FROM_SUBAGENTS"]}}</td>
+                        </tr>
+                        <tr>
+                            <td>Adjustments</td>
+                            <td>{{subLevelData["ADJUSTMENTS"]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+
+    <!--/.col-->
+</div>
+<app-oops *ngIf="isApiFailed"></app-oops>

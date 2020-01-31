@@ -1,0 +1,108 @@
+<div class="animated fadeIn" *ngIf="isBalanceCallCompleted">
+    <div class="col-sm-9 register">
+        <div class="card">
+            <div class="card-header">
+                <strong>Edit profile</strong>
+
+            </div>
+            <div class="card-body">
+                <form [formGroup]="profileForm" (ngSubmit)="saveprofile()">
+                    <div class="form-group">
+                        <label for="textarea-input"><b>Login info</b> </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" formControlName="login"
+                            placeholder="Enter your username name">
+                    </div>
+                    <div class="form-group">
+                        <label>Old password</label>
+                        <input type="password" class="form-control" formControlName="oldPassword"
+                            [attr.disabled]="!enableEditPassword ? '' : null">
+                    </div>
+                    <div class="form-group">
+                        <label>New password</label>
+                        <input type="password" class="form-control" formControlName="newPassword"
+                            [attr.disabled]="!enableEditPassword ? '' : null">
+                    </div>
+                    <div class="form-group">
+                        <input type="button" class="btn btn-md btn-info active" 
+                            (click)="enableEditPassword=true" value="Edit" />
+                        <input type="button" class="btn btn-md btn-success active" (click)="updatePswd()" value="Save"
+                            [disabled]="!enableEditPassword" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea-input"><b>Personal info</b> </label>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="firstname">Firstname</label>
+                            <input type="text" class="form-control" formControlName="firstName"
+                                placeholder="Enter your firstname ">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="lastname">lastname</label>
+                            <input type="text" class="form-control" formControlName="lastName"
+                                placeholder="Enter your lastname ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea-input">Address</label>
+
+                        <textarea id="textarea-input" name="textarea-input" formControlName="address" rows="4"
+                            class="form-control" placeholder="Enter Address"></textarea>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="Mobile">Mobile number </label>
+                        <input type="number" class="form-control" formControlName="phone"
+                            placeholder="Enter your Mobile number">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State/province </label>
+                        <input type="text" class="form-control" formControlName="state"
+                            placeholder="Enter your state/province">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">city </label>
+                        <input type="text" class="form-control" formControlName="city" placeholder="Enter your city">
+                    </div>
+                    <div class="form-group">
+                        <label for="currency">Preffered currency : </label>
+                        <label><b>({{preferredCurrency}})</b></label>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="postal">Zip/Postal</label>
+                            <input type="text" class="form-control" formControlName="postal"
+                                placeholder="Enter your postal code ">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="country">Country</label>
+                            <select class="form-control" formControlName="country" name="country"
+                                (change)="changeCountry($event.target.value)">
+                                <option *ngFor="let c of countriesList" value="{{c.id}}">
+                                    {{c.name}}
+                                </option>
+
+                            </select>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group btn-sml submitbtn">
+                        <button type="submit" class="btn btn-lg btn-success active" aria-pressed="true"
+                            [disabled]="!btnEnabled">Save</button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<app-oops *ngIf="isApiFailed"></app-oops>

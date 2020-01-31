@@ -1,0 +1,62 @@
+<div class="row" *ngIf="iSDatarendered">
+    <div class="col-lg-8 balancetable">
+        <div class="card" *ngIf="codesData!=null">
+            <div class="card-header">
+                <div style="display:inline-block">Account</div>
+                <div style="float: right;">
+                    <button type="submit" class="btn btn-md btn-primary btn-pill" aria-pressed="true"
+                        (click)="navigate('/user/addfhr')"><i class="fa fa-success"></i>
+                        Add codes</button></div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr rowspan="3">
+                            <td>Code</td>
+                            <td>Campaign Name</td>
+                            <td>Action</td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of codesData;let i=index">
+                            <td><b>{{c.code}}</b></td>
+                            <td>{{c.campaignName}}</td>
+                            <td *ngIf="c.status=='Active'">
+                                <div><button type="button" class="btn btn-danger btn-md "
+                                        (click)="modifyCode(i,'DEACTIVATE')">
+                                        Deactivate</button></div>
+
+                                <div class="editbtn"><button type="button" class="btn btn-success btn-md "
+                                        (click)="navigate('/user/addfhr',{mode:'edit',code:c.code,campId:c.id})">
+                                        Edit</button></div>
+
+                            </td>
+                            <td *ngIf="c.status!='Active'">
+                                <div>
+                                    <button type="button" class="btn btn-success btn-md "
+                                        (click)="modifyCode(i,'ACTIVATE')">
+                                        Activate</button></div>
+                                <div class="editbtn">
+                                    <button type="button" class="btn btn-success btn-md"
+                                        (click)="navigate('/user/addfhr',{mode:'edit',code:c.code,campId:c.id})">
+                                        Edit</button></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="card" *ngIf="codesData==null">
+
+            <div class="card-header">
+                {{noDataAvailableMsg}}
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+
+    <!--/.col-->
+</div>
+<app-oops *ngIf="isApiFailed"></app-oops>

@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-md-8 main">
+        <div class="card">
+            <div class="card-header">
+                <strong>Players list </strong>
+            </div>
+            <div class="card-body">
+                <form action="" enctype="multipart/form-data" (ngSubmit)="addbankaccinfo()" class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Personal Number</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="personal Number"
+                                [(ngModel)]="inputs.personalNumber" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Bank Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Bank Name" [(ngModel)]="inputs.bankName"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Account Number</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Account Numbe"
+                                [(ngModel)]="inputs.bankAccountNumber" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Account Branch name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Account Numbe"
+                                [(ngModel)]="inputs.accountBranchName" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Account Type</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Account Type" [(ngModel)]="inputs.accountType"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Account name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="nameOnAccount"
+                                [(ngModel)]="inputs.nameOnAccount" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 btnholder">
+                            <button  type="submit" class="btn btn-lg btn-success"><i
+                                    class="fa fa-success"></i>
+                                Create</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+</div>

@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-md-8 main">
+        <div class="card">
+            <div class="card-header">
+                <strong>Summary statistics</strong>
+            </div>
+            <div class="card-body">
+                <form action="" (ngSubmit)="getStats()" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="wallet">Period</label>
+                        <div class="col-md-9">
+                            <select id="wallet" name="dates" [(ngModel)]="selectedIndex" class="form-control">
+                                <option *ngFor="let d of dateData;let i=index" value="{{i}}">
+                                    {{d.text}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 btnholder">
+                            <button type="submit" class="btn btn-lg btn-danger"><i class="fa fa-success"></i>
+                                Get results</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+</div>
+<div class="">
+    <div class="animated main" *ngIf="isTableDataRendered">
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <div class="resultTextDiv">
+                        <i class="fa fa-align-justify"></i> Summary statistics
+                    </div>
+                    <div>
+                        <div>
+                            <table *ngIf="tableData.length>0" class="table table-bordered table-striped table-sm">
+                                <!-- <thead>
+                                    <tr>
+                                        <th *ngFor="let title of headers">{{title}}</th>
+                                    </tr>
+                                </thead> -->
+                                <tbody>
+                                    <tr *ngFor="let obj of tableData">
+                                        <td *ngIf="obj.isRouteEnabled" (click)="navigate(obj.path)" class="link">
+                                            {{obj.text}}
+
+                                        </td>
+                                        <td *ngIf="!obj.isRouteEnabled">
+                                            {{obj.text}}
+
+                                        </td>
+                                        <td>
+                                            {{obj.val}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered table-striped table-sm table-responsive"
+                                *ngIf="tableData.length==0">
+                                <thead>
+                                    <tr>
+                                        <th>No results !!!</th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

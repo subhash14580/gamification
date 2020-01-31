@@ -1,0 +1,52 @@
+<div class="row Overview">
+    <div class="col-sm-12 col-md-12">
+        <div class="card text-white bg-primary">
+            <div class="card-header">
+                Sitemap
+            </div>
+
+            <div class="card-body" *ngIf="!isUserLoggedIn">
+                <div *ngFor="let obj of preLoginlistOfPages">
+                    <div class="title"> <b>{{obj.title}}</b></div>
+                    <div *ngFor="let pageinfo of obj.pages">
+                        <p><a class="pagelink" (click)="navigate(pageinfo.route)">{{pageinfo.name}}</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="isUserLoggedIn">
+                <div *ngFor="let obj of postLoginlistOfPages1">
+                    <div class="title"> <b>{{obj.title}}</b></div>
+                    <div *ngFor="let pageinfo of obj.pages">
+                        <p><a class="pagelink" (click)="navigate(pageinfo.route)">{{pageinfo.name}}</a></p>
+                    </div>
+                </div>
+                <div *ngFor="let obj of postLoginlistOfPages2">
+                    <div class="title"> <b>{{obj.title}}</b></div>
+                    <div *ngFor="let pageinfo of obj.pages">
+                        <p><a class="pagelink" (click)="navigate(pageinfo.route)">{{pageinfo.name}}</a></p>
+                    </div>
+                </div>
+                <!-- <div *ngFor="let obj of postLoginlistOfPages3">
+                    <div class="title"> <b>{{obj.title}}</b></div>
+                    <div *ngFor="let pageinfo of obj.pages">
+                        <p><a class="pagelink" (click)="navigate(pageinfo.route)">{{pageinfo.name}}</a></p>
+                    </div>
+                </div>
+                <div *ngFor="let obj of postLoginlistOfPages4">
+                    <div class="title"> <b>{{obj.title}}</b></div>
+                    <div *ngFor="let pageinfo of obj.pages">
+                        <p><a class="pagelink" (click)="navigate(pageinfo.route)">{{pageinfo.name}}</a></p>
+                    </div>
+                </div>
+                <div *ngFor="let obj of postLoginlistOfPages5">
+                    <div class="title"> <b>{{obj.title}}</b></div>
+                    <div *ngFor="let pageinfo of obj.pages">
+                        <p><a class="pagelink" (click)="navigate(pageinfo.route)">{{pageinfo.name}}</a></p>
+                    </div>
+                </div> -->
+
+            </div>
+
+        </div>
+    </div>
+</div>

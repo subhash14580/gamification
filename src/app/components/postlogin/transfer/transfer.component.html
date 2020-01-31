@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-md-8 main">
+        <div class="card">
+            <div class="card-header">
+                <strong>Transfer</strong>
+            </div>
+            <div class="card-body">
+                <form action="" (ngSubmit)="transfer()" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="wallet">Currency</label>
+                        <div class="col-md-9">
+                            <select id="wallet" name="wallet" class="form-control">
+                                <option value="INR" selected="selected">INR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="Referrer">Referrer</label>
+                        <div class="col-md-9">
+                            <select id="referrer" name="select1" class="form-control">
+                                <option *ngFor="let record of playersList" value="{{record.referrerId}}">
+                                    {{record.loginName}} {{record.balance}}
+                                </option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-Transfer" for="wallet">Transfer</label>
+                        <div class="col-md-9">
+                            <div class="radioholder">
+                                <div class="form-check ptype">
+                                    <input class="form-check-input" type="radio" [(ngModel)]="inputs.subUser"
+                                        name="radios" id="Player" value="player" checked>
+                                    <label class="form-check-label" for="Player">
+                                        Player
+                                    </label>
+                                </div>
+                                <div class="form-check ptype">
+                                    <input class="form-check-input" type="radio" [(ngModel)]="inputs.subUser"
+                                        name="radios" id="playerslist" value="player_list">
+                                    <label class="form-check-label" for="playerslist">
+                                        Players list
+                                    </label>
+                                </div>
+                                <div class="form-check ptype">
+                                    <input class="form-check-input" type="radio" [(ngModel)]="inputs.subUser"
+                                        name="radios" id="agent" value="agent">
+                                    <label class="form-check-label" for="agent">
+                                        agent
+                                    </label>
+                                </div>
+                                <div class="form-check ptype">
+                                    <input class="form-check-input" type="radio" [(ngModel)]="inputs.subUser"
+                                        name="radios" id="agent_list" value="agentslist">
+                                    <label class="form-check-label" for="agentslist">
+                                        Agents list
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="tofroholder">
+                                <div>
+                                    <select id="tofro" name="tofro" class="form-control" [(ngModel)]="inputs.fromTo">
+                                        <option value="to" selected="selected">To</option>
+                                        <option value="from">From</option>
+                                    </select>
+                                </div>
+                                <div style="margin-left:10px">
+                                    <input type="text" name="formcontrol" [(ngModel)]="inputs.userId"
+                                        class="form-control" id="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="date-input">Payout</label>
+                        <div class="col-md-6">
+                            <input class="form-control" id="payout" type="number" name="payout"
+                                [(ngModel)]="inputs.amount" placeholder="">
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" id="payoutps" type="number" name="payoutps"
+                                [(ngModel)]="inputs.frac" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 btnholder">
+                            <button type="submit" class="btn btn-lg btn-danger" ><i
+                                    class="fa fa-success"></i>
+                                transfer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+</div>

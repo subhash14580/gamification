@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-8 main">
+    <div class="card">
+      <div class="card-header">
+        <strong>Deposit </strong>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="depositForm" enctype="multipart/form-data" (ngSubmit)="deposit()" class="form-horizontal">
+
+          <div class="form-group">
+            <label for="Mobile">Deposit amount </label>
+            <input type="number" class="form-control" placeholder="Enter  deposit amount" formControlName="amount">
+          </div>
+
+
+          <div class="form-group row">
+            <div class="col-md-12 btnholder">
+              <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-success"></i>
+                Deposit</button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <!--/.col-->
+</div>

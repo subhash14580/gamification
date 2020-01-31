@@ -1,0 +1,215 @@
+<div class="row">
+    <div class="col-md-8 main">
+        <div class="card">
+            <div class="card-header">
+                <strong>Agents revenue </strong>
+            </div>
+            <div class="card-body">
+                <form action="" (ngSubmit)="getRevenue(1,true)" class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="wallet">Group by</label>
+                        <div class="col-md-9">
+                            <select id="wallet" name="wallet" class="form-control" [(ngModel)]="inputs.groupBy">
+                                <option *ngFor="let groupList of groupByOps" value="{{groupList.value}}">
+                                    {{groupList.text}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="wallet">Period for </label>
+                        <div class="col-md-9">
+                            <div class="form-check ptype">
+                                <input class="form-check-input" type="radio" name="radios" value="CURRENTWEEK">
+                                <label class="form-check-label" for="Player">
+                                    Current week
+                                </label>
+                            </div>
+                            <div class="form-check ptype">
+                                <input class="form-check-input" type="radio" name="radios" value="LASTWEEK">
+                                <label class="form-check-label" for="Player">
+                                    Last week
+                                </label>
+                            </div>
+                            <div class="form-check ptype">
+                                <input class="form-check-input" type="radio" name="radios" value="CURRENTMONTH">
+                                <label class="form-check-label" for="Player">
+                                    Current month
+                                </label>
+                            </div>
+                            <div class="form-check ptype">
+                                <input class="form-check-input" type="radio" name="radios" value="LASTMONTH">
+                                <label class="form-check-label" for="Player">
+                                    Last month
+                                </label>
+                            </div>
+                            <div class="form-check ptype">
+                                <input class="form-check-input" type="radio" name="radios" value="CURRENTPAYPERIOD">
+                                <label class="form-check-label" for="Player">
+                                    Current pay period
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="date-input">By date</label>
+                        <div class="col-md-9">
+
+                            <div class="">
+                                <b>To</b>
+                                <input class="form-control" id="from-date-input" type="date" name="fromdate"
+                                    [(ngModel)]="inputs.fromdate" placeholder="date">
+
+                            </div>
+                            <div>
+                                <b>From</b>
+                                <input class="form-control" id="to-date-input" type="date" name="todate"
+                                    [(ngModel)]="inputs.todate" placeholder="date">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="agent">Referrer</label>
+                        <div class="col-md-9">
+                            <select id="referrer" name="agent" class="form-control">
+                                <option value="">MySelf</option>
+                                <option value="">MySelf and subagents</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="Username">Login</label>
+                        <div class="col-md-9">
+                            <input class="form-control" id="payout" type="text" [(ngModel)]="inputs.loginMask"
+                                name="username" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="Nickname">Full name</label>
+                        <div class="col-md-9">
+                            <input class="form-control" id="payout" type="text" [(ngModel)]="inputs.fullNameMask"
+                                name="nickname" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="rpage">Rows per page</label>
+                        <div class="col-md-9">
+                            <input type="number" id="rp" name="rp" class="form-control" [(ngModel)]="inputs.limit">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 btnholder">
+                            <button type="transfer" class="btn btn-lg btn-success btn-pill"><i
+                                    class="fa fa-success"></i>
+                                Get Revenue</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--/.col-->
+</div>
+<!-- <div class="row datatable" *ngIf="isTableDataRendered">
+        <div class="col-md-8 main">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> {{tableInfoText}}
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped table-sm" *ngIf="headers.length>0"
+                            >
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let title of headers">{{title}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let record of rowData">
+                                    <td *ngFor="let val of record" class="datatabletd" [innerHTML]="val"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered table-striped table-sm" *ngIf="headers.length == 0"
+                            >
+                            <thead>
+                                <tr>
+                                    <th>No results !!!</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <nav>
+                            <ul class="pagination" *ngIf="headers.length> 0">
+                                <li class="page-item"><a class="page-link" (click)="prevPage()"
+                                        *ngIf="selectedPageNumber> 1">Prev</a></li>
+                                <li class="page-item" *ngFor="let page of getListOfValues(numberOfPages)"
+                                    [ngClass]="{'active':page==selectedPageNumber}"><a class="page-link"
+                                        (click)="getAgentsList(page)">{{page}}</a></li>
+                                <li class="page-item" (click)="nextPage()"><a class="page-link"
+                                        *ngIf="numberOfPages>selectedPageNumber">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+</div> -->
+<div class="datatable">
+    <div class="animated main" *ngIf="isTableDataRendered">
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <div>
+                        <i class="fa fa-align-justify"></i> Results
+                    </div>
+                    <div>
+                        <div>
+                            <table *ngIf="headers.length>0" class="table table-bordered table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th *ngFor="let title of headers">{{title}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let record of rowData">
+                                        <td *ngFor="let val of record" class="datatabletd" [innerHTML]="val"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered table-striped table-sm table-responsive" *ngIf="headers.length==0">
+                                <thead>
+                                    <tr>
+                                        <th>No results !!!</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <nav>
+                                <ul class="pagination" *ngIf="headers.length> 0">
+                                    <li class="page-item"><a class="page-link" (click)="prevPage()"
+                                            *ngIf="selectedPageNumber> 1">Prev</a></li>
+                                    <li class="page-item" *ngFor="let page of getListOfValues(numberOfPages)"
+                                        [ngClass]="{'active':page==selectedPageNumber}"><a class="page-link"
+                                            (click)="getAgentsList(page)">{{page}}</a></li>
+                                    <li class="page-item" (click)="nextPage()"><a class="page-link"
+                                            *ngIf="numberOfPages>selectedPageNumber">Next</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
