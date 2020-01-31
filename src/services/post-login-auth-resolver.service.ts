@@ -18,6 +18,7 @@ export class PostLoginAuthResolverService implements Resolve<any>{
     private cookieService: CookiemanagerService,private toastSer:ToastService) { }
 
   resolve(): Observable<any> | Promise<any> | any {
+   // return true;
     if (!this.firstHitHappend && !this.authService.getOnLoadFirstHttpHitForLoginCheck()) {
       this.toastSer.showOverLay();
       this.firstHitHappend = true;
@@ -28,6 +29,7 @@ export class PostLoginAuthResolverService implements Resolve<any>{
 
     }
     else {
+     // return true;
       if (this.authService.getisUserAuthenticated()) {
         // USER IS LOGGED IN 
         if (this.cookieService.getJsessionCookie()["isDataExists"]) {

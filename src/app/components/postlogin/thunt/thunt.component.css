@@ -1,0 +1,11 @@
+.main
+{
+    margin: 0 auto !important;
+    padding-top: 20px;
+}
+
+.link
+{
+    cursor: pointer;
+    background: cadetblue;
+}

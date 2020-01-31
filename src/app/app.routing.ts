@@ -41,6 +41,9 @@ import { CanclpymtsComponent } from './components/postlogin/canclpymts/canclpymt
 import { RvnadjstmntsComponent } from './components/postlogin/rvnadjstmnts/rvnadjstmnts.component';
 import { BannersComponent } from './components/postlogin/banners/banners.component';
 import { CampstatsComponent } from './components/postlogin/campstats/campstats.component';
+import { ThuntComponent } from './components/postlogin/thunt/thunt.component';
+import { ShareComponent } from './components/postlogin/share/share.component';
+import { LboardComponent } from './components/postlogin/lboard/lboard.component';
 
 
 
@@ -100,12 +103,15 @@ export const routes: Routes = [{
     { path: 'addcamp', component: AddcamplistComponent, resolve: { res: PostLoginAuthResolverService } },
     { path: 'statistics', component: StatisticsComponent, resolve: { res: PostLoginAuthResolverService } },
     { path: 'campaigns', component: CampstatsComponent, resolve: { res: PostLoginAuthResolverService } }
+    , { path: 'gamezone', component: ThuntComponent, resolve: { res: PostLoginAuthResolverService }},
+{ path: 'share', component: ShareComponent, resolve: { res: PostLoginAuthResolverService } },
+{ path: 'lboard', component: LboardComponent, resolve: { res: PostLoginAuthResolverService } }
 
-  ]
+]
 },
 {
   path: '404', component: PagenotfoundComponent,
-  resolve: {
+    resolve: {
     res: PreLoginAuthGuardResolver
   }
 },
@@ -129,14 +135,14 @@ export const routes: Routes = [{
 },
 {
   path: 'privacypolicy',
-  component: PpolicyComponent, resolve: {
+    component: PpolicyComponent, resolve: {
     res: PreLoginAuthGuardResolver
   },
   data: { pathfrom: 'allowpage' }
 },
 {
   path: 'affiliateprograms',
-  component: AffprgrmsComponent, resolve: {
+    component: AffprgrmsComponent, resolve: {
     res: PreLoginAuthGuardResolver
   },
   data: { pathfrom: 'allowpage' }

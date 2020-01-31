@@ -11,20 +11,5 @@ export const preloginNavItems: INavData[] = [
         name: 'Register',
         url: '/register',
         icon: 'icon-user-follow'
-    },
-    {
-        name: 'Forgot password',
-        url: '/forgotpswd',
-        icon: 'icon-question'
-    },
-    {
-        name: 'Overview',
-        url: '/overview',
-        icon: 'icon-info'
-    },
-    {
-        name: 'Help',
-        url: '/help',
-        icon: 'icon-info'
     }
 ]

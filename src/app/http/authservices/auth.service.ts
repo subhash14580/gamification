@@ -41,6 +41,11 @@ export class AuthService {
   authenticateUserOnLoad(callback) // irrespective of login status , we should send static data to the appLevel  so that , even if user is not logged in static data for app is recieved 
   {
     const finalAPiResModel = this.getBasicApiResponseModel();
+    //  let  profileDataResponse ={success:true,login:"gopi"};
+    //  finalAPiResModel.response=profileDataResponse;
+    //   this.routeLoginCheckHandler.next(finalAPiResModel);
+    //       callback(finalAPiResModel);
+    //   return ;
     this.isValidSession((apiResModel: ApiResponseModel) => {
       this.onLoadFirstHttpHitForLoginCheck = true;
       if (!apiResModel.apistatus.isSuccess) {
@@ -110,13 +115,13 @@ export class AuthService {
   }
   logout(sendServerHit = false) {
     if (sendServerHit) {
-      if (this.cookieService.getJsessionCookie()["isDataExists"]) {
-        let postData = this.getBasicPayLoad();
-        postData["headers"] = this.getHeadersForProfileCall(this.cookieService.getJsessionCookie()["data"]);
-        this.http.invokePostCall(environment["api_url"] + environment["logout_api"], postData, (res) => {
-          console.log("Logged out : " + res);
-        });
-      }
+      // if (this.cookieService.getJsessionCookie()["isDataExists"]) {
+      //   let postData = this.getBasicPayLoad();
+      //   postData["headers"] = this.getHeadersForProfileCall(this.cookieService.getJsessionCookie()["data"]);
+      //   this.http.invokePostCall(environment["api_url"] + environment["logout_api"], postData, (res) => {
+      //     console.log("Logged out : " + res);
+      //   });
+      // }
 
     }
     this.cleanAllLevelData();
@@ -160,6 +165,9 @@ export class AuthService {
     this.dataMangrSer.clearAllData();
     //clear this level data
     this.isUserAuthenticated = false;
+    // clear local data 
+    this.lsmanager.setToLocalStorage("isuserloggedin", false);
+    this.lsmanager.setToLocalStorage("userdata", null);
   }
   setAllLevelData(ssid, profiledata) {
     this.cookieService.setCookie(appConf.wsessionIdKey, ssid);
@@ -170,6 +178,22 @@ export class AuthService {
   // PRELOGIN API HITS 
   isValidSession(callback) {
     let apiResModel = new ApiResponseModel();
+
+    const data = this.lsmanager.getDataFromlocalStorage("isuserloggedin")
+    if (data) {
+      this.isUserAuthenticated = true;
+      this.setAllLevelData("jgsugcusigciv", this.lsmanager.getDataFromlocalStorage("userdata"));
+      apiResModel.apistatus["isSuccess"] = true;
+      apiResModel.response = this.lsmanager.getDataFromlocalStorage("userdata");
+      callback(apiResModel);
+    }
+    else {
+      apiResModel.setApiStatus({ "isSuccess": true });
+      apiResModel.response = this.defaultResponse;
+      this.cleanAllLevelData();
+      callback(apiResModel);
+    }
+    return;
     // set values in api res model 
     apiResModel.setApiStatus({ "isSuccess": true });
     apiResModel.response = this.defaultResponse;
@@ -184,7 +208,7 @@ export class AuthService {
           this.setAllLevelData(wsession, profileDataResponse);
           apiResModel.apistatus["isSuccess"] = true;
           apiResModel.response = profileDataResponse;
-        //  this.loadBalance();
+          //  this.loadBalance();
           callback(apiResModel);
         }
         else {
@@ -201,7 +225,15 @@ export class AuthService {
 
   login(api, postData, callback) {
     // call api 
-    postData["headers"] = this.getHeadersForPreloginCalls();
+    //postData["headers"] = this.getHeadersForPreloginCalls();
+    let profileDataResponse = { success: true, login: "gopi" };
+    this.setAllLevelData("cjsdgcusgducxxrr", profileDataResponse);
+    this.lsmanager.setToLocalStorage("isuserloggedin", true);
+    this.lsmanager.setToLocalStorage("userdata", profileDataResponse);
+    this.isUserAuthenticated = true;
+    this.loginHandler.next(profileDataResponse);
+    callback(profileDataResponse);
+    return;
     this.http.invokePostCall(api, postData, (data) => {
       if (data.success) {
         const payLoad = this.getBasicPayLoad();
@@ -323,6 +355,18 @@ export class AuthService {
     }
   }
 
+  getData(api, callback, isHeaderProvided = false) {
+    // Develop api post data
+    callback(true);
+    return;
+    const apiResModel = this.getBasicApiResponseModel();
+    this.http.invokeGetCall(api, (data) => {
+      apiResModel.response = data;
+      callback(apiResModel);
+    });
+
+  }
+
   //Post login api hits 
   getDataOnPostCall(api, postData, callback, isHeaderProvided = false) {
     // Develop api post data
@@ -435,5 +479,7 @@ export class AuthService {
     }
     return null;
   }
+
+
 
 }

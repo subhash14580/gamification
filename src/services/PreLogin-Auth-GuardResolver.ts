@@ -14,13 +14,13 @@ export class PreLoginAuthGuardResolver implements Resolve<any> {
   constructor(private authService: AuthService, private router: Router, private toastSer: ToastService) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> | any {
-
+   // return true;
     let fromPath = null;
     if (route.data && ("pathfrom" in route.data)) {
       fromPath = route.data["pathfrom"];
     }
     if (!this.firstHitHappend && !this.authService.getOnLoadFirstHttpHitForLoginCheck()) {
-      this.toastSer.showOverLay();
+    //  this.toastSer.showOverLay();
       this.firstHitHappend = true;
       this.authService.authenticateUserOnLoad((apiRes: ApiResponseModel) => {
         if (apiRes.apistatus["isSuccess"] && apiRes.response["success"]) {
@@ -28,7 +28,7 @@ export class PreLoginAuthGuardResolver implements Resolve<any> {
             this.toastSer.hideOverLay();
             return true;
           }
-          this.router.navigate(['/user/statistics']);
+          this.router.navigate(['/user/gamezone']);
         }
         else {
           this.toastSer.hideOverLay();
@@ -44,7 +44,7 @@ export class PreLoginAuthGuardResolver implements Resolve<any> {
           this.toastSer.hideOverLay();
           return true;
         }
-        this.router.navigate(['/user/statistics']);
+        this.router.navigate(['/user/gamezone']);
       }
       else {
         return true;

@@ -117,4 +117,9 @@ export const toastmsgs = {
         "error": { "title": "Invalid", "msg": "" }
 
     },
+    "wronganswer": {
+        "success": { "title": "Try Again !!!", "msg": "" },
+        "error": { "title": "Invalid", "msg": "" }
+
+    },
 }

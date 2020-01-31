@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
     this.toastrService.hideOverLay();
     if (data.success) {
       this.toastrService.showToaster(toastmsgs.login.success, "success");
-      this.router.navigate(['/user/statistics']);
+      this.router.navigate(['/user/gamezone']);
     } else {
       let msgobj = toastmsgs.login.error;
       msgobj.title = data["code"];

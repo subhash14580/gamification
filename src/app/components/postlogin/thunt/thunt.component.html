@@ -1,0 +1,74 @@
+<div class="">
+    <div class="animated main">
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <div class="resultTextDiv">
+                        <i class="fa fa-align-justify"></i> Your treasures
+                    </div>
+                    <div>
+                        <div>
+                            <table  class="table table-bordered table-striped table-sm">
+                                <!-- <thead>
+                                    <tr>
+                                        <th *ngFor="let title of headers">{{title}}</th>
+                                    </tr>
+                                </thead> -->
+                                <tbody>
+
+                                    <tr *ngFor="let lov of rowData">
+                                        <td *ngFor="let obj of lov">
+                                        <div *ngIf="obj.NA"> Locked </div>
+                                         <div *ngIf="!obj.NA && obj.qno==currentStage" (click)="viewQuestion(obj.qno)"> Unlock </div>
+                                         <div *ngIf="!obj.NA && obj.qno!=currentStage" (click)="viewMyRewards(obj.qno)"> View rewards </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                           
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<div class="" *ngIf="showQuestion">
+    <div class="animated main">
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <div class="resultTextDiv">
+                        <i class="fa fa-align-justify"></i> Your Treasure question
+                    </div>
+                     <form action=""  enctype="multipart/form-data" class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="wallet">{{qData.question}}</label>
+                        <div class="col-md-9">
+                            <select id="wallet" name="dates" class="form-control" [(ngModel)]="qans">
+                                <option *ngFor="let d of qData.options;let i=index" value="{{d}}">
+                                    {{d}}
+                                </option>
+                            </select>
+                        </div>
+                        </div>
+                         <div class="col-md-12 btnholder">
+                            <button  class="btn btn-lg btn-danger" (click)="validateAnswer(qData.qno,qans)"><i class="fa fa-success"></i>
+                                Check </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+    
+
+
+    </div>
+</div>
+

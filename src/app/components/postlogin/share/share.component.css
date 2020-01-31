@@ -1,0 +1,27 @@
+.heading
+{
+    color: black !important;
+    font-weight: bold;
+    text-align: center;
+}
+.main
+{
+    margin: 0 auto !important;
+}
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+  .captcha
+  {
+    background: black;
+    width: 100%;
+  }
+  .bottomdiv
+  {
+    padding-top: 10px;
+  }
+  

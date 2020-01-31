@@ -71,7 +71,7 @@ export class DefaultLayoutComponent {
     this.navItems = preloginNavItems;
     this.router.navigate(['/login']);
   }
-  navigate(path) {
+  navigate(path) {  
     this.router.navigate([path]);
   }
   setDataOnSuccessfulLogin(data) {

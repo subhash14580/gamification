@@ -109,7 +109,43 @@ export const dataConf = {
         { key: "cancelledAmount", text: "Cancelled Payments", val: "", isRouteEnabled: true, path: '/user/cancelledpayments' },
         { key: "totalRevenue", text: "Total Revenue", val: "",isRouteEnabled: false  },
     ]
-
+,
+ res:{
+    "username":"user1",
+    "currentStage":"2",
+    "totalquestions":"9",
+    "share":[],
+    "data":{
+            "questions":{
+                "1":{
+                    "question":"Live More Bank Less is the tag line of which company?",
+                    "options":{
+                        "1":"AXIS Bank",
+                        "2":"ICICI Bank",
+                        "3":"DBS Bank",
+                        "4":"CITI Bank"
+                    },
+                    "answer":"3",
+                    "qno":"1",
+                    "NA":false,
+                    "rewards":"You have won 10rs cashback"
+                },
+                "2":{
+                    "question":"Who is the CEO of DBS?",
+                    "options":{
+                        "1":"SUNDHAR PICHAI",
+                        "2":"JEFF BEZOS",
+                        "3":"PIYUSH GUPTHA",
+                        "4":"ELON MUSK"
+                    },
+                    "answer":"3",
+                    "qno":"2",
+                    "NA":false,
+                    "rewards":"You have won 20rs cashback"
+                }
+            }
+    }
+  }
 }
 
 

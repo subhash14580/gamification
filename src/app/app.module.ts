@@ -76,6 +76,9 @@ import { CanclpymtsComponent } from './components/postlogin/canclpymts/canclpymt
 import { RvnadjstmntsComponent } from './components/postlogin/rvnadjstmnts/rvnadjstmnts.component';
 import { BannersComponent } from './components/postlogin/banners/banners.component';
 import { CampstatsComponent } from './components/postlogin/campstats/campstats.component';
+import { ThuntComponent } from './components/postlogin/thunt/thunt.component';
+import { ShareComponent } from './components/postlogin/share/share.component';
+import { LboardComponent } from './components/postlogin/lboard/lboard.component';
 
 
 @NgModule({
@@ -132,7 +135,10 @@ import { CampstatsComponent } from './components/postlogin/campstats/campstats.c
     CanclpymtsComponent,
     RvnadjstmntsComponent,
     BannersComponent,
-    CampstatsComponent
+    CampstatsComponent,
+    ThuntComponent,
+    ShareComponent,
+    LboardComponent
 
   ],
   providers: [{
